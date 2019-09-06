@@ -1,5 +1,5 @@
 # This represents an estimated object with reference coordinate frame and timestamp.
-Header header
+std_msgs/Header header
 
 # The id of the object (presumably from the detecting sensor).
 uint32 id

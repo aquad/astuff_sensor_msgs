@@ -1,40 +1,24 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(derived_object_msgs)
 
-find_package(catkin REQUIRED
-  COMPONENTS
-  message_generation
-  std_msgs
-  geometry_msgs
-  shape_msgs
-  radar_msgs
+find_package(ament_cmake REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(shape_msgs REQUIRED)
+find_package(radar_msgs REQUIRED)
+
+rosidl_generate_interfaces(derived_object_msgs
+  "msg/CipvTrack.msg"
+  "msg/LaneModels.msg"
+  "msg/Lane.msg"
+  "msg/ObjectArray.msg"
+  "msg/Object.msg"
+  "msg/ObjectWithCovarianceArray.msg"
+  "msg/ObjectWithCovariance.msg"
+  "msg/SolidPrimitiveWithCovariance.msg"
+  DEPENDENCIES builtin_interfaces std_msgs geometry_msgs shape_msgs radar_msgs
 )
 
-## Declare ROS messages and services
-add_message_files(DIRECTORY msg FILES
-  CipvTrack.msg
-  LaneModels.msg
-  Lane.msg
-  ObjectArray.msg
-  Object.msg
-  ObjectWithCovarianceArray.msg
-  ObjectWithCovariance.msg
-  SolidPrimitiveWithCovariance.msg
-)
-
-## Generate added messages and services
-generate_messages(DEPENDENCIES
-  std_msgs
-  geometry_msgs
-  shape_msgs
-  radar_msgs
-)
-
-## Declare a catkin package
-catkin_package(CATKIN_DEPENDS
-  message_runtime
-  std_msgs
-  geometry_msgs
-  shape_msgs
-  radar_msgs
-)
+ament_package()
